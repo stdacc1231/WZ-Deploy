@@ -51,6 +51,11 @@ jobs:
         run: |
           curl https://cli-assets.heroku.com/install.sh | sh
 
+      - name: Set Heroku Stack to Container
+        run: heroku stack:set container --app ${{inputs.HEROKU_APP_NAME}}
+        env:
+          HEROKU_API_KEY: ${{inputs.HEROKU_API_KEY}}
+
       - name: Deploy Repo to Heroku
         uses: akhileshns/heroku-deploy@v3.13.15
         with:
